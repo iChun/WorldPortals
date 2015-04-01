@@ -1,0 +1,18 @@
+tile.worldportals.block.worldportal.name=World Portal
+
+window.worldPortalInfo.title=World Portal Info
+window.worldPortalInfo.orientation=Orientation
+window.worldPortalInfo.orientToPlayer=Orient towards the player
+window.worldPortalInfo.orientToPlayerShort=Player
+window.worldPortalInfo.face=Face
+window.worldPortalInfo.horizontal=Render the World Portal Horizontally?
+window.worldPortalInfo.horizontalBtn=Horizontal
+window.worldPortalInfo.horizontalShort=Is Horizontal?
+window.worldPortalInfo.height=Height
+window.worldPortalInfo.width=Width
+window.worldPortalInfo.offsetHeight=Height Offset
+window.worldPortalInfo.offsetDepth=Depth Offset
+window.worldPortalInfo.active=Active?
+window.worldPortalInfo.activeBtn=Active
+window.worldPortalInfo.project=Enable Projection?
+window.worldPortalInfo.projectBtn=Projection
