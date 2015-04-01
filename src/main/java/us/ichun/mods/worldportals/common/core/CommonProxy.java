@@ -6,6 +6,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import us.ichun.mods.ichunutil.common.core.network.ChannelHandler;
 import us.ichun.mods.worldportals.common.WorldPortals;
 import us.ichun.mods.worldportals.common.block.BlockWorldPortal;
+import us.ichun.mods.worldportals.common.packet.PacketChannelList;
+import us.ichun.mods.worldportals.common.packet.PacketRequestChannels;
 import us.ichun.mods.worldportals.common.packet.PacketWorldPortalInfo;
 import us.ichun.mods.worldportals.common.tileentity.TileEntityWorldPortal;
 
@@ -19,7 +21,7 @@ public class CommonProxy
 
         registerTileEntity(TileEntityWorldPortal.class, "WorldPortals_WorldPortal");
 
-        WorldPortals.channel = ChannelHandler.getChannelHandlers("WorldPortals", PacketWorldPortalInfo.class);
+        WorldPortals.channel = ChannelHandler.getChannelHandlers("WorldPortals", PacketWorldPortalInfo.class, PacketRequestChannels.class, PacketChannelList.class);
     }
 
     public void init()

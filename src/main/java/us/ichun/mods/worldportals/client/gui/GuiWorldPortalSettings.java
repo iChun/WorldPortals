@@ -46,6 +46,7 @@ public class GuiWorldPortalSettings extends IWorkspace
         level.add(windowWorldPortal);
 
         levels.add(level);
+        levels.add(new ArrayList<Window>());
     }
 
     @Override

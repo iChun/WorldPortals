@@ -13,11 +13,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import us.ichun.mods.ichunutil.common.module.worldportals.WorldPortalCarrier;
+import us.ichun.mods.ichunutil.common.module.worldportals.WorldPortalLocation;
 import us.ichun.mods.worldportals.client.gui.GuiWorldPortalSettings;
+import us.ichun.mods.worldportals.common.WorldPortals;
 import us.ichun.mods.worldportals.common.tileentity.TileEntityWorldPortal;
 
 public class BlockWorldPortal extends Block
-    implements ITileEntityProvider
+        implements ITileEntityProvider
 {
     public BlockWorldPortal()
     {
@@ -52,6 +54,36 @@ public class BlockWorldPortal extends Block
         return true;
     }
 
+    @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        super.onBlockAdded(world, pos, state);
+
+        if(!world.isRemote)
+        {
+            TileEntity te = world.getTileEntity(pos);
+            if(te instanceof WorldPortalCarrier)
+            {
+                WorldPortals.eventHandler.addWorldPortalToMap(world, new WorldPortalLocation(((WorldPortalCarrier)te).getPortalInfo(), pos));
+            }
+        }
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        if(!world.isRemote)
+        {
+            TileEntity te = world.getTileEntity(pos);
+            if(te instanceof WorldPortalCarrier)
+            {
+                WorldPortals.eventHandler.removeWorldPortalFromMap(world, new WorldPortalLocation(((WorldPortalCarrier)te).getPortalInfo(), pos));
+            }
+        }
+
+        super.breakBlock(world, pos, state);
+    }
+
     @SideOnly(Side.CLIENT)
     public void openGui(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitVecX, float hitVecY, float hitVecZ)
     {
@@ -60,7 +92,7 @@ public class BlockWorldPortal extends Block
         {
             Minecraft mc = Minecraft.getMinecraft();
             int oriScale = mc.gameSettings.guiScale;
-//            mc.gameSettings.guiScale = mc.gameSettings.guiScale == 1 ? 1 : 2;
+            //            mc.gameSettings.guiScale = mc.gameSettings.guiScale == 1 ? 1 : 2;
 
             Minecraft.getMinecraft().displayGuiScreen(new GuiWorldPortalSettings((WorldPortalCarrier)te, oriScale));
         }

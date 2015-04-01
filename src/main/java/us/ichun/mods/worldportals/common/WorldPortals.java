@@ -38,6 +38,8 @@ public class WorldPortals
 
     public static Block blockWorldPortal;
 
+    public static EventHandler eventHandler;
+
     @Mod.EventHandler
     public void preLoad(FMLPreInitializationEvent event)
     {
@@ -45,8 +47,8 @@ public class WorldPortals
 
         proxy.preInit();
 
-        EventHandler handler = new EventHandler();
-        MinecraftForge.EVENT_BUS.register(handler);
+        eventHandler = new EventHandler();
+        MinecraftForge.EVENT_BUS.register(eventHandler);
     }
 
     @Mod.EventHandler

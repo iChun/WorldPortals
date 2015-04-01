@@ -21,5 +21,6 @@ window.worldPortalInfo.linkPortalName=Link Portal
 window.worldPortalInfo.linkPortalButton=Link
 window.worldPortalInfo.linkPortalTooltip=Link the World Portal to another World Portal
 
+window.linkPortal.title=Channel Chooser
 window.linkPortal.gettingFromServer=Getting Channels From Server...
 window.linkPortal.chooseChannel=Choose a Channel
