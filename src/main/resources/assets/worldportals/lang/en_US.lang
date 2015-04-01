@@ -16,3 +16,10 @@ window.worldPortalInfo.active=Active?
 window.worldPortalInfo.activeBtn=Active
 window.worldPortalInfo.project=Enable Projection?
 window.worldPortalInfo.projectBtn=Projection
+window.worldPortalInfo.teleport=Teleport Type
+window.worldPortalInfo.linkPortalName=Link Portal
+window.worldPortalInfo.linkPortalButton=Link
+window.worldPortalInfo.linkPortalTooltip=Link the World Portal to another World Portal
+
+window.linkPortal.gettingFromServer=Getting Channels From Server...
+window.linkPortal.chooseChannel=Choose a Channel

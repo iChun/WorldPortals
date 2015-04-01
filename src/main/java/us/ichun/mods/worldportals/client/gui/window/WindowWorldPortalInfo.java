@@ -28,6 +28,8 @@ public class WindowWorldPortalInfo extends Window
     public static final int ID_OFFSET_DEPTH = 7;
     public static final int ID_ACTIVE = 8;
     public static final int ID_PROJECT = 9;
+    public static final int ID_TELEPORT = 10;
+    public static final int ID_LINK_PORTAL = 11;
 
     public WindowWorldPortalInfo(GuiWorldPortalSettings parent, int x, int y, int w, int h, WorldPortalInfo info)
     {
@@ -49,17 +51,22 @@ public class WindowWorldPortalInfo extends Window
         elements.add(new ElementNumberInput(this, 10 + ((width + 2) * count++), row1, width, 12, ID_FACE, "window.worldPortalInfo.face", 1, false, 0, 5, worldPortal.face));
         elements.add(new ElementToggle(this, 10 + ((width + 2) * count++), row1, width, 12, ID_HORIZONTAL, false, 0, 0, "window.worldPortalInfo.horizontalBtn", "window.worldPortalInfo.horizontal", worldPortal.horizontal));
 
-        int row2 = 60;
+        int row2 = row1 + 30;
         count = 0;
         elements.add(new ElementNumberInput(this, 10 + ((width + 2) * count++), row2, width, 12, ID_HEIGHT, "window.worldPortalInfo.height", 1, true, 0.1D, 20D, worldPortal.height));
         elements.add(new ElementNumberInput(this, 10 + ((width + 2) * count++), row2, width, 12, ID_WIDTH, "window.worldPortalInfo.width", 1, true, 0.05D, 10D, worldPortal.width));
         elements.add(new ElementNumberInput(this, 10 + ((width + 2) * count++), row2, width, 12, ID_OFFSET_HEIGHT, "window.worldPortalInfo.offsetHeight", 1, true, 0D, 10D, worldPortal.offsetHeight));
         elements.add(new ElementNumberInput(this, 10 + ((width + 2) * count++), row2, width, 12, ID_OFFSET_DEPTH, "window.worldPortalInfo.offsetDepth", 1, true, 0D, 10D, worldPortal.offsetDepth));
 
-        int row3 = 90;
+        int row3 = row2 + 30;
         count = 0;
         elements.add(new ElementToggle(this, 10 + ((width + 2) * count++), row3, width, 12, ID_ACTIVE, false, 0, 0, "window.worldPortalInfo.activeBtn", "window.worldPortalInfo.active", worldPortal.active));
         elements.add(new ElementToggle(this, 10 + ((width + 2) * count++), row3, width, 12, ID_PROJECT, false, 0, 0, "window.worldPortalInfo.projectBtn", "window.worldPortalInfo.project", worldPortal.project));
+        elements.add(new ElementNumberInput(this, 10 + ((width + 2) * count++), row3, width, 12, ID_TELEPORT, "window.worldPortalInfo.teleport", 1, false, 0D, 3D, worldPortal.teleport));
+        elements.add(new ElementButtonTooltip(this, 10 + ((width + 2) * count++), row3, width, 12, ID_LINK_PORTAL, false, 0, 0 , "window.worldPortalInfo.linkPortalButton", "window.worldPortalInfo.linkPortalTooltip"));
+
+        int row4 = row3 + 30;
+        count = 0;
     }
 
     @Override
@@ -75,6 +82,10 @@ public class WindowWorldPortalInfo extends Window
                     break;
                 }
             }
+        }
+        else if(element.id == ID_LINK_PORTAL)
+        {
+
         }
         if(element.id == -200)
         {
@@ -112,6 +123,10 @@ public class WindowWorldPortalInfo extends Window
                     else if(e.id == ID_OFFSET_DEPTH)
                     {
                         worldPortalClone.offsetDepth = Double.parseDouble(num.textFields.get(0).getText());
+                    }
+                    else if(e.id == ID_TELEPORT)
+                    {
+                        worldPortalClone.teleport = Integer.parseInt(num.textFields.get(0).getText());
                     }
                 }
                 else if(e instanceof ElementToggle)
@@ -152,17 +167,22 @@ public class WindowWorldPortalInfo extends Window
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.face"), posX + (11 + ((width + 2) * count++)), posY + row1, Theme.getAsHex(workspace.currentTheme.font), false);
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.horizontalShort"), posX + (11 + ((width + 2) * count++)), posY + row1, Theme.getAsHex(workspace.currentTheme.font), false);
 
-        int row2 = 50;
+        int row2 = row1 + 30;
         count = 0;
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.height"), posX + (11 + ((width + 2) * count++)), posY + row2, Theme.getAsHex(workspace.currentTheme.font), false);
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.width"), posX + (11 + ((width + 2) * count++)), posY + row2, Theme.getAsHex(workspace.currentTheme.font), false);
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.offsetHeight"), posX + (11 + ((width + 2) * count++)), posY + row2, Theme.getAsHex(workspace.currentTheme.font), false);
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.offsetDepth"), posX + (11 + ((width + 2) * count++)), posY + row2, Theme.getAsHex(workspace.currentTheme.font), false);
 
-        int row3 = 80;
+        int row3 = row2 + 30;
         count = 0;
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.active"), posX + (11 + ((width + 2) * count++)), posY + row3, Theme.getAsHex(workspace.currentTheme.font), false);
         workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.projectBtn"), posX + (11 + ((width + 2) * count++)), posY + row3, Theme.getAsHex(workspace.currentTheme.font), false);
+        workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.teleport"), posX + (11 + ((width + 2) * count++)), posY + row3, Theme.getAsHex(workspace.currentTheme.font), false);
+        workspace.getFontRenderer().drawString(StatCollector.translateToLocal("window.worldPortalInfo.linkPortalName"), posX + (11 + ((width + 2) * count++)), posY + row3, Theme.getAsHex(workspace.currentTheme.font), false);
+
+        int row4 = row3 + 30;
+        count = 0;
     }
 
     @Override
