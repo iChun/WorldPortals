@@ -29,6 +29,7 @@ public class WorldPortalsSaveData extends WorldSavedData
     @Override
     public void readFromNBT(NBTTagCompound tag)
     {
+        //TODO attached world still isn't fucking set when this is read
         int count = tag.getInteger("portalCount");
         for(int i = 0; i < count; i++)
         {
